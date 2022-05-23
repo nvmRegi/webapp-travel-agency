@@ -45,11 +45,11 @@
                     document.querySelector('no_viaggio').classList.remove('d-none');
                 } else{
                     document.getElementById('wait_viaggio').classList.add('d-none');
-                    document.querySelector('viaggio_div').classList.remove('d-none');
+                    document.getElementById('viaggio_div').classList.remove('d-none');
 
                     result.data.forEach(viaggio =>{
 
-                        document.getElementById('pizza-div').innerHTML += 
+                        document.getElementById('viaggio_div').innerHTML += 
                         `
                             
                             <div class="col-10 col-sm-8 col-md-4 shadow p-0 mb-5 bg-body rounded ">
