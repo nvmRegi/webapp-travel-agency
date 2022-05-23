@@ -1,7 +1,81 @@
 ﻿@{
     Layout = "_CustomLayout";
 }
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Pacchetti Viaggi</h1>
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <div id="wait_viaggio" class="row text-center">
+        <div class="col-12">
+            <div class="loader">
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <span>Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="no_viaggio" class="row text-center d-none">
+        <div class="col-12">
+            <h3>Non è presente nessun pacchetto viaggio</h3>
+        </div>
+    </div>
+
+    <div id="viaggio_div" class="row justify-content-center d-none" >
+
+    </div>
 </div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+
+        loadViaggi();
+
+        function loadViaggi(){
+            document.getElementById('viaggio_div').innerHTML = "";
+
+            axios.get('/api/Viaggi/Get').then((result) =>{
+                console.log("Ho ricevuto i miei pacchetti viaggio");
+
+                if(result.data.length == 0){
+                    document.getElementById('wait_viaggio').classList.add('d-none');
+                    document.querySelector('no_viaggio').classList.remove('d-none');
+                } else{
+                    document.getElementById('wait_viaggio').classList.add('d-none');
+                    document.querySelector('viaggio_div').classList.remove('d-none');
+
+                    result.data.forEach(viaggio =>{
+
+                        document.getElementById('pizza-div').innerHTML += 
+                        `
+                            
+                            <div class="col-10 col-sm-8 col-md-4 shadow p-0 mb-5 bg-body rounded ">
+
+                                <div class="card border-0">
+                                <img src="${viaggio.immagine}" class="card-img-top rounded-0" alt="${viaggio.nome}">
+                                </div>
+
+                                <div class="card-header text-white bg-warning border-0">
+                                <h5 class="mb-0">${viaggio.nome}</h5>
+                                </div>
+
+                                <div class="card-body">
+                                <p class="card-text">${viaggio.descrizione}</p>
+                                </div>
+
+                                <div class="card-footer bg-white pt-0">
+                                <p class="text-warning"><small>${viaggio.durata} days - ${viaggio.numerodestinazioni} destinations</small></p>
+                                <p><strong>${viaggio.prezzo}&euro;</strong><span class="text-muted">/person</span></p>
+                                </div>
+                            </div>
+                        `
+                    })
+                }
+            })
+        }
+
+    </script>
+}
