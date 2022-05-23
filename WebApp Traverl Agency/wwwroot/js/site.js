@@ -1,4 +1,6 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿document.getElementById('search_input').addEventListener('keyup', cercaViaggio);
 
-// Write your JavaScript code.
+function cercaViaggio() {
+    let cerca_input = document.getElementById('search_input').value;
+    loadViaggi(cerca_input)
+}

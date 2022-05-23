@@ -10,15 +10,23 @@ namespace WebApp_Traverl_Agency.Controllers.API
     public class ViaggiController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string? cerca)
         {
             List<PacchettoViaggio> listaViaggi = new List<PacchettoViaggio>();
 
             using(TravelContext db = new TravelContext())
             {
-                listaViaggi = db.Pacchetto_Viaggio.ToList();
+                if(cerca != null)
+                {
+                    listaViaggi = db.Pacchetto_Viaggio
+                        .Where(viaggio => viaggio.Nome.Contains(cerca) || viaggio.Descrizione.Contains(cerca))
+                        .ToList();
+                }
+                else
+                {
+                    listaViaggi = db.Pacchetto_Viaggio.ToList();
+                }
             }
-
             return Ok(listaViaggi);
         }
     }

@@ -32,12 +32,18 @@
 @section Scripts{
     <script type="text/javascript">
 
-        loadViaggi();
+        
 
-        function loadViaggi(){
+        loadViaggi('');
+
+        function loadViaggi(viaggioDaCercare){
             document.getElementById('viaggio_div').innerHTML = "";
 
-            axios.get('/api/Viaggi/Get').then((result) =>{
+            axios.get('/api/Viaggi/Get', {
+                params: {
+                    cerca : viaggioDaCercare
+                }
+            }).then((result) =>{
                 console.log("Ho ricevuto i miei pacchetti viaggio");
 
                 if(result.data.length == 0){
@@ -52,7 +58,7 @@
                         document.getElementById('viaggio_div').innerHTML += 
                         `
                             
-                            <div class="col-10 col-sm-8 col-md-4 shadow p-0 mb-5 bg-body rounded ">
+                            <div class="col-10 col-sm-8 col-md-3 shadow p-0 mb-5 bg-body rounded mx-4">
 
                                 <div class="card border-0">
                                 <img src="${viaggio.immagine}" class="card-img-top rounded-0" alt="${viaggio.nome}">
@@ -74,6 +80,8 @@
                         `
                     })
                 }
+            }).catch((error) => {
+                console.log("C'è stato un errore: " + error);
             })
         }
 
