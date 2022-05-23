@@ -71,5 +71,64 @@ namespace WebApp_Traverl_Agency.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult Aggiorna(int id)
+        {
+            using(TravelContext db = new TravelContext())
+            {
+                try
+                {
+                    PacchettoViaggio pacchettoViaggio = db.Pacchetto_Viaggio
+                        .Where(x => x.Id == id)
+                        .First();
+                        return View("Aggiorna", pacchettoViaggio);
+                } catch (InvalidOperationException ex)
+                {
+                    return NotFound("Il pacchetto viaggio non è stato trovato");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Aggiorna(int id, PacchettoViaggio model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Aggiorna", model);
+            }
+
+            PacchettoViaggio viaggioToEdit = null;
+
+            using(TravelContext db = new TravelContext())
+            {
+                viaggioToEdit = db.Pacchetto_Viaggio
+                    .Where(viaggio => viaggio.Id == id)
+                    .First();
+
+                if (viaggioToEdit == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    viaggioToEdit.Nome = model.Nome;
+                    viaggioToEdit.Immagine = model.Immagine;
+                    viaggioToEdit.Descrizione = model.Descrizione; 
+                    viaggioToEdit.Durata = model.Durata;
+                    viaggioToEdit.NumeroDestinazioni = model.NumeroDestinazioni;
+                    viaggioToEdit.Prezzo = model.Prezzo;
+
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+        }
     }
 }
