@@ -10,7 +10,7 @@ namespace WebApp_Traverl_Agency.Controllers.API
     public class ViaggiController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Get(string? cerca)
+        public IActionResult Get(string? cerca, int? id)
         {
             List<PacchettoViaggio> listaViaggi = new List<PacchettoViaggio>();
 
@@ -21,13 +21,22 @@ namespace WebApp_Traverl_Agency.Controllers.API
                     listaViaggi = db.Pacchetto_Viaggio
                         .Where(viaggio => viaggio.Nome.Contains(cerca) || viaggio.Descrizione.Contains(cerca))
                         .ToList();
+                    return Ok(listaViaggi);
+                }
+                else if (id != null)
+                {
+                    PacchettoViaggio dettaglioViaggio = db.Pacchetto_Viaggio
+                        .Where(viaggio => viaggio.Id == id)
+                        .First();
+                    return Ok(dettaglioViaggio);
                 }
                 else
                 {
                     listaViaggi = db.Pacchetto_Viaggio.ToList();
+                    return Ok(listaViaggi);
                 }
             }
-            return Ok(listaViaggi);
+            
         }
     }
 }

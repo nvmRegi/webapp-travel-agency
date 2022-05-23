@@ -54,28 +54,31 @@
                     document.getElementById('viaggio_div').classList.remove('d-none');
 
                     result.data.forEach(viaggio =>{
-
+                        
+                        var idViaggio = viaggio.id;
+                        var url = "/Home/dettagli/" + idViaggio;
                         document.getElementById('viaggio_div').innerHTML += 
                         `
-                            
                             <div class="col-10 col-sm-8 col-md-3 shadow p-0 mb-5 bg-body rounded mx-4">
 
-                                <div class="card border-0">
-                                <img src="${viaggio.immagine}" class="card-img-top rounded-0" alt="${viaggio.nome}">
-                                </div>
+                                <a href="${url}" style="color: inherit; text-decoration: inherit">
+                                    <div class="card border-0">
+                                    <img src="${viaggio.immagine}" class="card-img-top rounded-0" alt="${viaggio.nome}">
+                                    </div>
 
-                                <div class="card-header text-white bg-warning border-0">
-                                <h5 class="mb-0">${viaggio.nome}</h5>
-                                </div>
+                                    <div class="card-header text-white bg-warning border-0">
+                                    <h5 class="mb-0">${viaggio.nome}</h5>
+                                    </div>
 
-                                <div class="card-body">
-                                <p class="card-text">${viaggio.descrizione}</p>
-                                </div>
+                                    <div class="card-body">
+                                    <p class="card-text">${viaggio.descrizione}</p>
+                                    </div>
 
-                                <div class="card-footer bg-white pt-0">
-                                <p class="text-warning"><small>${viaggio.durata} days - ${viaggio.numerodestinazioni} destinations</small></p>
-                                <p><strong>${viaggio.prezzo}&euro;</strong><span class="text-muted">/person</span></p>
-                                </div>
+                                    <div class="card-footer bg-white pt-0">
+                                    <p class="text-warning"><small>${viaggio.durata} days - ${viaggio.numerodestinazioni} destinations</small></p>
+                                    <p><strong>${viaggio.prezzo}&euro;</strong><span class="text-muted">/person</span></p>
+                                    </div>
+                                </a>
                             </div>
                         `
                     })
