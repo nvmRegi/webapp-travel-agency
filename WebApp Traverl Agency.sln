@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp Traverl Agency", "WebApp Traverl Agency\WebApp Traverl Agency.csproj", "{78CF6E32-68D5-4719-BE78-379C81B50209}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78CF6E32-68D5-4719-BE78-379C81B50209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78CF6E32-68D5-4719-BE78-379C81B50209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78CF6E32-68D5-4719-BE78-379C81B50209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78CF6E32-68D5-4719-BE78-379C81B50209}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {436E94C7-25AC-437C-BF4B-327D300AF7F5}
+	EndGlobalSection
+EndGlobal
