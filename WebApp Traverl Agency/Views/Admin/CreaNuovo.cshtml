@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "_CustomLayout";
+}
+
+@model PacchettoViaggio
+
+<form action="@Url.Action("CreaNuovo", "Admin")" method="post" autocomplete="off">
+    @Html.AntiForgeryToken()
+
+    <!-- nome -->
+    <div class="form-outline">
+        <input asp-for="Nome" type="text" class="form-control" />
+        <label class="form-label" for="Nome">Nome</label>
+    </div>
+    
+    <!-- immagine -->
+    <div class="form-outline">
+        <input asp-for="Immagine" type="url" class="form-control" />
+        <label class="form-label" for="Immagine">Immagine</label>
+    </div>
+    
+    <!-- durata viaggio -->
+    <div class="form-outline mb-4">
+    <input asp-for="Durata" type="number" class="form-control" />
+    <label class="form-label" for="Durata">Durata del viaggio</label>
+    </div>
+
+    <!-- numero di destinazioni -->
+    <div class="form-outline mb-4">
+    <input asp-for="NumeroDestinazioni" type="number" class="form-control" />
+    <label class="form-label" for="form6Example4">Numero delle destinazioni</label>
+    </div>
+
+    <!-- Descrizione -->
+    <div class="form-outline mb-4">
+    <textarea asp-for="Descrizione" rows="10" class="form-control"></textarea>
+    <label class="form-label" for="Descrizione">Descrizione</label>
+    </div>
+
+    <!-- Prezzo -->
+    <div class="form-outline mb-4">
+    <input asp-for="Prezzo" type="number" min="1" step="any" class="form-control" />
+    <label class="form-label" for="Prezzo">Prezzo a persona</label>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Crea nuovo pacchetto viaggio</button>
+</form>
