@@ -7,6 +7,7 @@ namespace WebApp_Traverl_Agency.Data
     {
         public DbSet<PacchettoViaggio> Pacchetto_Viaggio { get; set; }
 
+        public DbSet<RichiestaInfo> Richiesta_Informazioni { get; set; } 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=localhost;Database=travel_agency;Integrated Security=True");
