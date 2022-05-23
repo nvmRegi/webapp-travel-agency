@@ -95,6 +95,7 @@ namespace WebApp_Traverl_Agency.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Aggiorna(int id, PacchettoViaggio model)
         {
             if (!ModelState.IsValid)
@@ -112,7 +113,7 @@ namespace WebApp_Traverl_Agency.Controllers
 
                 if (viaggioToEdit == null)
                 {
-                    return NotFound();
+                    return NotFound("Il pacchetto viaggio non è stato trovato");
                 }
                 else
                 {
@@ -128,7 +129,30 @@ namespace WebApp_Traverl_Agency.Controllers
                     return RedirectToAction("Index");
                 }
             }
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Elimina(int id)
+        {
+            using(TravelContext db = new TravelContext())
+            {
+                PacchettoViaggio viaggioToDelete = db.Pacchetto_Viaggio
+                    .Where(viaggio => viaggio.Id == id)
+                    .First();
+
+                if(viaggioToDelete != null)
+                {
+                    db.Pacchetto_Viaggio.Remove(viaggioToDelete);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return NotFound("Il pacchetto viaggio non è stato trovato");
+                }
+            }
         }
     }
 }
