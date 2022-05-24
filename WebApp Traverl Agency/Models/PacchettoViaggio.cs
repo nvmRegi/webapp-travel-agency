@@ -21,7 +21,7 @@ namespace WebApp_Traverl_Agency.Models
         public double Prezzo { get; set; }
 
         [JsonIgnore]
-        public List<RichiestaInfo> RichiesteInfo { get; set; }
+        public List<RichiestaInfo>? RichiesteInfo { get; set; }
          
         public PacchettoViaggio()
         {

@@ -1,0 +1,12 @@
+﻿#intro {
+    background-image: url("https://mdbootstrap.com/img/new/fluid/city/018.jpg");
+    height: 100vh;
+    background-size: cover;
+    
+}
+
+#corpo {
+    padding-top: 60px
+}
+
+

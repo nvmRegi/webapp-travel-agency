@@ -2,16 +2,16 @@
     Layout = "_CustomLayout";
 }
 @model List<PacchettoViaggio>
+<div class="container" style="padding-top: 65px">
+    <div class="container text-center">
+        <a class="btn btn-outline-info"
+                        href="@Url.Action("CreaNuovo", "Admin")">
+                        Aggiungi nuovo pacchetto viaggio
+        </a>
+    </div>
 
-<div class="container text-center">
-    <a class="btn btn-outline-info"
-                    href="@Url.Action("CreaNuovo", "Admin")">
-                    Aggiungi nuovo pacchetto viaggio
-    </a>
-</div>
 
-
-<table class="table align-middle">
+    <table class="table align-middle">
         <thead>
             <tr>
                 <th scope="col">Immagine</th>
@@ -50,4 +50,6 @@
             </tr>
         }
         </tbody>
-</table>
+    </table>
+</div>
+

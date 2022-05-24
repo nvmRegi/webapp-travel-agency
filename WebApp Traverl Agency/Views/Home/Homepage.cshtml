@@ -1,39 +1,42 @@
 ﻿@{
     Layout = "_CustomLayout";
 }
-<div class="container">
-    <div class="text-center">
-        <h1 class="display-4">Pacchetti Viaggi</h1>
-    </div>
+<div id="intro">
+    <div class="container" id="corpo">
+        <div class="text-center">
+            <h1 class="display-4">Pacchetti Viaggi</h1>
+        </div>
 
-    <div id="wait_viaggio" class="row text-center">
-        <div class="col-12">
-            <div class="loader">
-                <div class="ball"></div>
-                <div class="ball"></div>
-                <div class="ball"></div>
-                <span>Loading...</span>
+        <div id="wait_viaggio" class="row text-dark justify-content-center my-5">
+            <div class="col-2">
+                <div class="loader">
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                    <span>Loading...</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="no_viaggio" class="row text-center d-none">
-        <div class="col-12">
-            <h3>Non è presente nessun pacchetto viaggio</h3>
+        <div id="no_viaggio" class="row text-center d-none">
+            <div class="col-12">
+                <h3>Non è presente nessun pacchetto viaggio</h3>
+            </div>
+        </div>
+
+        <div id="viaggio_div" class="row justify-content-center d-none" >
+
         </div>
     </div>
-
-    <div id="viaggio_div" class="row justify-content-center d-none" >
-
-    </div>
 </div>
+
 
 
 @section Scripts{
     <script type="text/javascript">
 
         
-
+        
         loadViaggi('');
 
         function loadViaggi(viaggioDaCercare){
@@ -63,10 +66,10 @@
 
                                 <a href="${url}" style="color: inherit; text-decoration: inherit">
                                     <div class="card border-0">
-                                    <img src="${viaggio.immagine}" class="card-img-top rounded-0" alt="${viaggio.nome}">
+                                    <img src="${viaggio.immagine}" class="card-img-top " alt="${viaggio.nome}">
                                     </div>
 
-                                    <div class="card-header text-white bg-warning border-0">
+                                    <div class="card-header text-white bg-success border-0">
                                     <h5 class="mb-0">${viaggio.nome}</h5>
                                     </div>
 
@@ -75,7 +78,7 @@
                                     </div>
 
                                     <div class="card-footer bg-white pt-0">
-                                    <p class="text-warning"><small>${viaggio.durata} days - ${viaggio.numerodestinazioni} destinations</small></p>
+                                    <p class="text-success"><small>${viaggio.durata} days - ${viaggio.numeroDestinazioni} destinations</small></p>
                                     <p><strong>${viaggio.prezzo}&euro;</strong><span class="text-muted">/person</span></p>
                                     </div>
                                 </a>
