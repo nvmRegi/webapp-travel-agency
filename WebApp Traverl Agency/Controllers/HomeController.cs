@@ -36,6 +36,8 @@ namespace WebApp_Traverl_Agency.Controllers
             }
         }
 
+        
+
         [HttpGet]
         public IActionResult Privacy()
         {

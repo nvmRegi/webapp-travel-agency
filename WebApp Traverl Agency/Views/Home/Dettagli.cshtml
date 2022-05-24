@@ -18,18 +18,18 @@
 
     </div>
 
-    <form onsubmit="richiestaInfo()">
+    <form onsubmit="richiestaInfo(event)"  method="post">
       <!-- 2 column grid layout with text inputs for the first and last names -->
       <div class="row mb-4">
         <div class="col">
           <div class="form-outline">
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" name="NomeUtente" id="NomeUtente"/>
             <label class="form-label" for="NomeUtente">Nome</label>
           </div>
         </div>
         <div class="col">
           <div class="form-outline">
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" name="CognomeUtente" id="CognomeUtente"/>
             <label class="form-label" for="CognomeUtente">Cognome</label>
           </div>
         </div>
@@ -37,13 +37,13 @@
 
       <!-- Email input -->
       <div class="form-outline mb-4">
-        <input type="email" class="form-control" />
+        <input type="email" class="form-control" name="Email" id="Email"/>
         <label class="form-label" for="Email">Email</label>
       </div>
 
       <!-- Message input -->
       <div class="form-outline mb-4">
-        <textarea class="form-control" rows="4"></textarea>
+        <textarea class="form-control" rows="4" name="Informazioni" id="Informazioni"></textarea>
         <label class="form-label" for="Informazioni">Ulteriori informazioni</label>
       </div>
 
@@ -56,12 +56,11 @@
 
 @section Scripts{
     <script type="text/javascript">
+
         loadViaggio();
 
         function loadViaggio(){
-        
             var id = @Model.Id;
-
             axios.get('/api/Viaggi/Get?id='+ id).then((result) => {
                 
                 document.getElementById('dettaglio_viaggio').innerHTML =
@@ -88,13 +87,34 @@
             })
         }
 
-        function richiestaInfo() {
-            axios.post('/api/MoreInfo/aggiungiRichiesta', {
-                NomeUtente:
-                CognomeUtente:
-                EmailUtente:
-                Richiesta:
-                PacchettoViaggio:
+        
+        function richiestaInfo(event) {
+            debugger;
+
+            event.preventDefault();
+            
+            
+            var nome = document.getElementById('NomeUtente').value;
+            var cognome = document.getElementById('CognomeUtente').value;
+            var email = document.getElementById('Email').value;
+            var informazioni = document.getElementById('Informazioni').value;
+            var id = @Model.Id;
+
+            var nuovaRichiesta = {
+                NomeUtente: nome,
+                CognomeUtente: cognome,
+                EmailUtente: email,
+                Richiesta: informazioni,
+                PacchettoViaggioId : id
+            }
+            
+            axios.post('/api/MoreInfo/Post', nuovaRichiesta
+            ).then((result) => {
+
+                console.log("Ho aggiunto la nuova richiesta");
+
+            }).catch((error) => {
+                console.log("Si è verificato un errore: " + error);
             })
         }
     </script>

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace WebApp_Traverl_Agency.Models
 {
@@ -19,7 +20,7 @@ namespace WebApp_Traverl_Agency.Models
         [Required(ErrorMessage = "Il campo Prezzo è obbligatorio")]
         public double Prezzo { get; set; }
 
-
+        [JsonIgnore]
         public List<RichiestaInfo> RichiesteInfo { get; set; }
          
         public PacchettoViaggio()

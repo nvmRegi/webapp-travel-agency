@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace WebApp_Traverl_Agency.Models
 {
@@ -22,7 +23,9 @@ namespace WebApp_Traverl_Agency.Models
         public string Richiesta { get; set; }
 
         public int PacchettoViaggioId { get; set; }
-        public PacchettoViaggio PacchettoViaggio { get; set; }
+
+        [JsonIgnore]
+        public PacchettoViaggio? PacchettoViaggio { get; set; }
 
         public RichiestaInfo() { }
     }

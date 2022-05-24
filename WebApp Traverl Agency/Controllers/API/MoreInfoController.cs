@@ -12,33 +12,26 @@ namespace WebApp_Traverl_Agency.Controllers.API
         [HttpGet]
         public IActionResult Get()
         {
-            List<RichiestaInfo> listaRichieste = new List<RichiestaInfo>();
-            if(listaRichieste.Count == 0)
-            {
-                return Ok(listaRichieste); 
-            }
-
             using(TravelContext db = new TravelContext())
             {
-                listaRichieste = db.Richiesta_Informazioni.ToList();
+                List<RichiestaInfo>  listaRichieste = db.Richiesta_Informazioni.ToList();
                 return Ok(listaRichieste);
             }
         }
 
         [HttpPost]
-        public IActionResult AggiungiRichiesta([FromBody]RichiestaInfo data)
+        public IActionResult Post([FromBody]RichiestaInfo model)
         {
             if (!ModelState.IsValid)
             {
                 return UnprocessableEntity(ModelState);
             }
 
-            using(TravelContext db = new TravelContext())
+            using (TravelContext db = new TravelContext())
             {
-                List<RichiestaInfo> listaRichieste = db.Richiesta_Informazioni.ToList();
-                listaRichieste.Add(data);
-
-                return Ok(listaRichieste);
+                List<RichiestaInfo>  listaRichieste = db.Richiesta_Informazioni.ToList();
+                listaRichieste.Add(model);
+                return Ok();
             }
         }
 
