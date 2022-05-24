@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApp_Traverl_Agency.Data;
 using WebApp_Traverl_Agency.Models;
 
@@ -26,13 +27,15 @@ namespace WebApp_Traverl_Agency.Controllers
                 try
                 {
                     PacchettoViaggio viaggioFound = db.Pacchetto_Viaggio
-                        .Where(x => x.Id == id)
-                        .First();
+                        .Where(viaggio => viaggio.Id == id).Include(viaggio => viaggio.RichiesteInfo)
+                        .FirstOrDefault();
                     return View("Dettagli", viaggioFound);
-                } catch(InvalidOperationException ex)
+                }
+                catch (InvalidOperationException ex)
                 {
                     return NotFound("Il pacchetto viaggio non è stato trovato");
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     return BadRequest(ex.Message);
                 }

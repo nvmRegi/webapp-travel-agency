@@ -29,8 +29,8 @@ namespace WebApp_Traverl_Agency.Controllers.API
 
             using (TravelContext db = new TravelContext())
             {
-                List<RichiestaInfo>  listaRichieste = db.Richiesta_Informazioni.ToList();
-                listaRichieste.Add(model);
+                db.Add(model);
+                db.SaveChanges();
                 return Ok();
             }
         }

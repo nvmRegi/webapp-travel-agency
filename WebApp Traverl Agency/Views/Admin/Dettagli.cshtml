@@ -1,28 +1,66 @@
 ﻿@model PacchettoViaggio
 
-   <div class="container">
-      <div class="row text-center">
-         <div class="col-12">
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12">
             <div>
-               <h1 class="mt-3 mb-3">Dettagli Pacchetto Viaggio</h1>
+                <h1 class="mt-3 mb-3">Dettagli Pacchetto Viaggio</h1>
             </div>
-         </div>
-      </div>
+        </div>
+    </div>
    
-     <div class="row justify-content-center">
+    <div class="row justify-content-center">
         <div class="col-10 col-sm-8 col-md-4 shadow p-0 mb-5 bg-body rounded ">
+
             <div class="card border-0">
                 <img src="@Model.Immagine" class="card-img-top rounded-0" alt="@Model.Nome">
             </div>
+
             <div class="card-header text-white bg-warning border-0">
                 <h5 class="mb-0">@Model.Nome</h5>
             </div>
+
             <div class="card-body">
                 <p class="card-text">@Model.Descrizione</p>
             </div>
+
             <div class="card-footer bg-white pt-0">
                 <p class="text-warning"><small>@Model.Durata days - @Model.NumeroDestinazioni destinations</small></p>
                 <p><strong>@Model.Prezzo&euro;</strong><span class="text-muted">/person</span></p>
             </div>
+
         </div>
-   </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12">
+            <div>
+                <h2 class="mt-3 mb-3">Richieste di informazioni</h2>
+            </div>
+        </div>
+    </div>
+
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Cognome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Richiesta</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        @foreach(RichiestaInfo info in Model.RichiesteInfo)
+        {
+            <tr>
+                <th class="align-middle">@info.NomeUtente</th>
+                <td class="align-middle">@info.CognomeUtente</td>
+                <td class="align-middle">@info.EmailUtente</td>
+                <td class="align-middle">@info.Richiesta</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

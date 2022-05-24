@@ -89,7 +89,7 @@
 
         
         function richiestaInfo(event) {
-            debugger;
+            
 
             event.preventDefault();
             
@@ -112,6 +112,15 @@
             ).then((result) => {
 
                 console.log("Ho aggiunto la nuova richiesta");
+                var url = window.location.href;
+                console.log(url)
+
+                var home = url.substring(0, 22);
+                console.log(home);
+
+                window.location.assign(home);
+                
+                
 
             }).catch((error) => {
                 console.log("Si è verificato un errore: " + error);
